@@ -10,20 +10,21 @@ public class AudioMeter : MonoBehaviour
 
     float timer = 0f;
 
-    private void Start()
+    void Start()
     {
         microphone = MicrophoneController.Instance;
     }
 
-    // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
 
         if (timer >= refreshRateInSeconds)
         {
+            float loudness = microphone.GetLoudnessFromMicrophone(threshold, multiplier);
+
             timer = 0f;
-            slider.value = Mathf.Lerp(0f, 1f, microphone.GetLoudnessFromMicrophone(threshold, multiplier));
+            slider.value = Mathf.Lerp(0f, 1f, loudness);
         }
     }
 }

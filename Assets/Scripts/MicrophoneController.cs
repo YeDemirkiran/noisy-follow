@@ -21,9 +21,9 @@ public class MicrophoneController : MonoBehaviour
 
     public float GetLoudnessFromMicrophone(float threshold, float outputMultiplier)
     {
-        if (microphoneRecord == null) { return -1f; }
+        if (microphoneRecord == null) { Debug.Log("Microphone is not working!"); return -1f; }
 
-        float volume = AudioUtilities.GetLoudnessFromAudio(microphoneRecord, Microphone.GetPosition(Microphone.devices[0]), sampleWindow);
+        float volume = AudioUtilities.GetLoudnessFromAudio(microphoneRecord, Microphone.GetPosition(currentDeviceName), sampleWindow);
 
         if (volume <= threshold)
         {
