@@ -21,7 +21,7 @@ public class AudioMeter : MonoBehaviour
 
         if (timer >= refreshRateInSeconds)
         {
-            float loudness = microphone.GetLoudnessFromMicrophone(threshold, multiplier);
+            float loudness = microphone.GetLoudnessFromMicrophone(threshold, multiplier * PlayerData.volumeMultiplier);
 
             timer = 0f;
             slider.value = Mathf.Lerp(0f, 1f, loudness);
